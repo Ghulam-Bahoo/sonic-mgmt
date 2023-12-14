@@ -414,6 +414,18 @@ def test_bfd_basic(request, rand_selected_dut, ptfhost, tbinfo, ipv6, dut_init_f
             else:
                 check_dut_bfd_status(duthost, neighbor_addr, "Up")
                 check_ptf_bfd_status(ptfhost, neighbor_addr, local_addrs[idx], "Up")
+        # Testing "On Demand" mode
+        update_idx = random.choice(list(range(bfd_session_cnt)))
+        update_bfd_session_state(ptfhost, neighbor_addrs[update_idx], local_addrs[update_idx], "on-demand")
+        time.sleep(1)
+
+        for idx, neighbor_addr in enumerate(neighbor_addrs):
+            if idx == update_idx:
+                check_dut_bfd_status(duthost, neighbor_addr, "On Demand")
+                check_ptf_bfd_status(ptfhost, neighbor_addr, local_addrs[idx], "On Demand")
+            else:
+                check_dut_bfd_status(duthost, neighbor_addr, "Continuous")
+                check_ptf_bfd_status(ptfhost, neighbor_addr, local_addrs[idx], "Continuous")
 
     finally:
         stop_ptf_bfd(ptfhost)
