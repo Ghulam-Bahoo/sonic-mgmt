@@ -1,4 +1,4 @@
-# Birirectional Forwarding Detection (BFD)  Echo-Mode
+# Bidirectional Forwarding Detection (BFD)  Echo-Mode
 
 ## Test Plan Revision History
 
