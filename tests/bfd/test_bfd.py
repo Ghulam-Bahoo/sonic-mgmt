@@ -943,7 +943,7 @@ def test_bfd_echo_mode(request, rand_selected_dut, ptfhost, tbinfo, ipv6):
     neighbor_addrs = get_neighbors(duthost, tbinfo, ipv6, count=bfd_session_cnt)[2]
 
     try:
-        # Use bfd_echo_mode function for direct configuration
+        # Use bfd_echo_mode functions for direct configuration
         bfd_echo_mode(duthost, neighbor_addrs)  # Pass None for optional logger
 
         # Verify BFD sessions with echo mode enabled
